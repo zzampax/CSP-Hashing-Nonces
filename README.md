@@ -13,7 +13,7 @@ $csp .= " 'sha256-$hash'";
 ```
 That will later be appended to the CSP header in the HTML:
 ```
-<meta http-equiv='Content-Security-Policy' content="$csp";>
+<meta http-equiv='Content-Security-Policy' content="...";>
 ```
 ### Adding custom inline scripts
 If you add an inline script tag inside ```final.php```, you'll need to re-generate the hashes and add it to the CSP header.
