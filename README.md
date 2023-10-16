@@ -4,15 +4,15 @@ All these examples were made in PHP, but the CSP is the same for all languages.
 
 ## Hashes
 The chosen hashing method is SHA-256. The hash is generated using the following command:
-```
+```php
 base64_encode(hash('sha256', $script_content, true));
 ```
 The hash is then added to the CSP content string:
-```
+```php
 $csp .= " 'sha256-$hash'";
 ```
 That will later be appended to the CSP header in the HTML:
-```
+```html
 <meta http-equiv='Content-Security-Policy' content="...";>
 ```
 ### Adding custom inline scripts
@@ -24,15 +24,15 @@ By default, non-hashed inline scripts are blocked. using the provided input in `
 
 ## Nonces
 The nonce is generated using the following command:
-```
+```php
 $nonce = base64_encode(openssl_random_pseudo_bytes(32));
 ```
 The nonce is then added to the CSP header in the HTML:
-```
+```html
 <meta http-equiv='Content-Security-Policy' content="default-src 'self'; script-src 'self' 'nonce-$try'";>
 ```
 The nonce is also added to the script tag:
-```
+```html
 <script nonce="$nonce">
 ```
 ### Additional considerations
